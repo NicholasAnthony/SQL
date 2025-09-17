@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not Another SQL!</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1, h2 { color: #333; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
+        code { font-family: monospace; }
+    </style>
+</head>
+<body>
+    <img src="https://github.com/NicholasAnthony/SQL/docs/image.png" width="200">
+    <h1>Not Another SQL!</h1>
+    <p>This project demonstrates basic SQL operations using a SQLite database.</p>
+
+    <h2>Database Structure</h2>
+    <p>The database (<code>demo.db</code>) contains two tables:</p>
+    <ul>
+        <li><strong>students</strong>: Stores 1,000 student records (id, first_name, last_name, age, grade).</li>
+        <li><strong>courses</strong>: Stores 1,000 course enrollments (course_id, course_name, student_id), with each student assigned one course.</li>
+    </ul>
+
+    <h2>Sample SQL Queries</h2>
+    <p>Click <a href="https://github.com/NicholasAnthony/SQL/docs/queries.html">here</a> to see the jupyter notebook with queries</p>
+    <p>Below are examples of SQL queries demonstrated in <code>queries.ipynb</code>:</p>
+    <pre><code>
+-- Select all students
+SELECT * FROM students;
+
+-- Select students with grade 'High Distinction'
+SELECT name, age FROM students WHERE grade = 'High Distinction';
+
+-- List students and their assigned course
+SELECT s.first_name, s.last_name, s.grade, c.course_name
+FROM students s
+JOIN courses c ON s.id = c.student_id;
+
+-- Count students per course
+SELECT course_name, COUNT(student_id) AS student_count
+FROM courses
+GROUP BY course_name
+ORDER BY student_count DESC;
+    </code></pre>
+
+    <h2>Try It Yourself</h2>
+    <p>Clone the repository and run the scripts:</p>
+    <pre><code>
+git clone https://github.com/NicholasAnthony/SQL.git
+cd SQL
+python populate_students.py
+python populate_courses.py
+python queries.ipynb
+    </code></pre>
+    <p>Check out the source code in the <a href="https://github.com/NicholasAnthony/SQL">GitHub repository</a>.</p>
+</body>
+</html>
